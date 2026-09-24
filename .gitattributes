@@ -1,0 +1,7 @@
+# Same line endings for everyone (avoids whole-file diffs between Windows and Linux).
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.webp binary
+*.pdf binary

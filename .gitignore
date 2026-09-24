@@ -1,0 +1,26 @@
+# dependencies
+node_modules
+
+# build
+dist
+*.tsbuildinfo
+
+# env: never commit real keys (only .env.example is versioned)
+.env
+.env.local
+.env.*.local
+
+# Supabase CLI local state
+supabase/.temp
+supabase/.branches
+
+# logs
+*.log
+npm-debug.log*
+
+# editors / OS / personal tools
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+.continue
