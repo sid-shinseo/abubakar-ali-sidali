@@ -6,12 +6,15 @@ import {
   TriangleAlertIcon,
 } from "lucide-react"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
+import { useTheme } from "@/hooks/useTheme"
 
-// The site is dark-only, so the theme is fixed instead of going through next-themes.
+// Follows the site's theme (src/lib/theme.ts) instead of next-themes.
 const Toaster = ({ ...props }: ToasterProps) => {
+  const { resolved } = useTheme()
+
   return (
     <Sonner
-      theme="dark"
+      theme={resolved}
       className="toaster group"
       icons={{
         success: <CircleCheckIcon className="size-4" />,

@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { useAuth } from '@/hooks/useAuth';
 import { profile } from '@/lib/profile';
 import { cn } from '@/lib/utils';
@@ -29,6 +30,7 @@ export function Header() {
           {profile.name}
         </Link>
 
+        <div className="flex items-center gap-2 md:gap-5">
         <nav className="hidden items-center gap-7 text-sm md:flex">
           {links.map((link) => (
             <NavLink key={link.to} to={link.to} className={linkClass}>
@@ -36,6 +38,8 @@ export function Header() {
             </NavLink>
           ))}
         </nav>
+
+        <ThemeToggle className="text-muted-foreground hover:text-foreground" />
 
         <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
           <SheetTrigger asChild>
@@ -57,6 +61,7 @@ export function Header() {
             </nav>
           </SheetContent>
         </Sheet>
+        </div>
       </div>
     </header>
   );

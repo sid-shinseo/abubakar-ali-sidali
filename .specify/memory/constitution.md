@@ -14,7 +14,7 @@ The `/admin` routes, along with all content creation, modification, and deletion
 Adding, updating, reordering, or deleting portfolio content must be performed through the `/admin` interface and persisted directly in the Supabase PostgreSQL database without requiring code modifications or redeployment. Projects can be kept as drafts until published. Images are compressed in the browser (WebP, 1920 px max) before being uploaded to Supabase Storage and served via public URLs; files that are no longer referenced are deleted from storage. The schema file must stay idempotent so it can be re-run safely.
 
 ### IV. User Experience & Responsive Design
-The application must feature a mobile-first, responsive design with dark mode enabled by default using Tailwind CSS and shadcn/ui. The visual style stays sober: no emojis, no arrow characters in links, soft shadows, a single muted violet accent; technologies show their official logo or a matching generic icon. All asynchronous operations (data fetching, authentication, uploads) must include visual feedback such as loading indicators and actionable error states.
+The application must feature a mobile-first, responsive design using Tailwind CSS and shadcn/ui, with a light and a dark theme that follow the visitor's system setting by default and can be switched manually (choice remembered, applied before first paint). The visual style stays sober: no emojis, no arrow characters in links, soft shadows, a single muted violet accent; technologies show their official logo or a matching generic icon. All asynchronous operations (data fetching, authentication, uploads) must include visual feedback such as loading indicators and actionable error states.
 
 ## Governance
 

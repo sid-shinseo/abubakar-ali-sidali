@@ -11,6 +11,7 @@ import {
   type LucideIcon,
   UserRound,
 } from 'lucide-react';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -200,7 +201,8 @@ export function AdminLayout() {
               )}
             </BreadcrumbList>
           </Breadcrumb>
-          <Button asChild variant="outline" size="sm" className="ml-auto hidden sm:inline-flex">
+          <ThemeToggle className="ml-auto" />
+          <Button asChild variant="outline" size="sm" className="hidden sm:inline-flex">
             <a href="/" target="_blank" rel="noreferrer">
               Voir le site
             </a>

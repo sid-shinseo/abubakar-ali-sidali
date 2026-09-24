@@ -1,11 +1,26 @@
 <!doctype html>
-<html lang="fr" class="dark">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Applies the theme before the first paint (no flash): saved choice, otherwise the visitor's system setting.
+         Same storage key and logic as src/lib/theme.ts. -->
+    <script>
+      (function () {
+        var dark;
+        try {
+          var saved = localStorage.getItem('theme');
+          dark = saved === 'dark' || (saved !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        } catch (e) {
+          dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+        document.documentElement.classList.toggle('dark', dark);
+      })();
+    </script>
     <title>Abubakar Ali Sid-Ali · Systèmes & réseaux</title>
     <meta name="description" content="Abubakar Ali Sid-Ali, administrateur systèmes, réseaux et sécurité (BTS SIO SISR), en recherche d'alternance pour le Titre Pro AIS en Alsace." />
-    <meta name="theme-color" content="#0c0c0f" />
+    <meta name="theme-color" content="#fbfaff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c0c0f" media="(prefers-color-scheme: dark)" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
