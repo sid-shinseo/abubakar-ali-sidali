@@ -10,7 +10,7 @@ import { errorMessage } from '@/lib/errors';
 import { groupBy } from '@/lib/group';
 import type { Skill } from '@/types';
 import { useAdminData } from './admin-data';
-import { AdminPageHeader, ConfirmDeleteDialog, EmptyState, FormSheet, RowActions } from './shared';
+import { AdminPageHeader, ConfirmDeleteDialog, EmptyState, FormDialog, RowActions } from './shared';
 import { SkillForm } from './SkillForm';
 import { SortableTableBody } from './sortable';
 
@@ -149,7 +149,7 @@ export function SkillsPage() {
         </div>
       )}
 
-      <FormSheet
+      <FormDialog
         open={sheetOpen}
         onOpenChange={setSheetOpen}
         title={editing ? 'Modifier la compétence' : 'Nouvelle compétence'}
@@ -166,7 +166,7 @@ export function SkillsPage() {
           onSavingChange={setIsSaving}
           onSaved={() => setSheetOpen(false)}
         />
-      </FormSheet>
+      </FormDialog>
 
       <ConfirmDeleteDialog itemLabel={pendingDelete?.name ?? null} onCancel={() => setPendingDelete(null)} onConfirm={() => void confirmDelete()} />
     </>

@@ -15,7 +15,7 @@ import { removeFilesByUrl } from '@/lib/storage';
 import type { Project } from '@/types';
 import { useAdminData } from './admin-data';
 import { ProjectForm } from './ProjectForm';
-import { AdminPageHeader, ConfirmDeleteDialog, EmptyState, FormSheet, RowActions } from './shared';
+import { AdminPageHeader, ConfirmDeleteDialog, EmptyState, FormDialog, RowActions } from './shared';
 import { SortableTableBody } from './sortable';
 
 const FORM_ID = 'project-form';
@@ -218,7 +218,7 @@ export function ProjectsPage() {
         </div>
       )}
 
-      <FormSheet
+      <FormDialog
         open={sheetOpen}
         onOpenChange={handleSheetChange}
         title={editing ? 'Modifier le projet' : 'Nouveau projet'}
@@ -226,9 +226,10 @@ export function ProjectsPage() {
         formId={FORM_ID}
         submitLabel={editing ? 'Enregistrer' : 'Créer le projet'}
         isSaving={isSaving}
+        size="lg"
       >
         <ProjectForm key={formKey} formId={FORM_ID} project={editing} onSavingChange={setIsSaving} onSaved={() => handleSheetChange(false)} />
-      </FormSheet>
+      </FormDialog>
 
       <ConfirmDeleteDialog itemLabel={pendingDelete?.title ?? null} onCancel={() => setPendingDelete(null)} onConfirm={() => void confirmDelete()} />
     </>

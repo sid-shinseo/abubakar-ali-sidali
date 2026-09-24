@@ -19,7 +19,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Label } from '@/components/ui/label';
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { cn } from '@/lib/utils';
 
 export function AdminPageHeader({ title, description, actions }: { title: string; description?: string; actions?: ReactNode }) {
   return (
@@ -61,7 +62,7 @@ export function CategoryOptions({ id, values }: { id: string; values: string[] }
   );
 }
 
-interface FormSheetProps {
+interface FormDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   title: string;
@@ -69,29 +70,39 @@ interface FormSheetProps {
   formId: string;
   submitLabel: string;
   isSaving: boolean;
+  /** "lg" for long forms (projects), "md" for the others. Same look either way. */
+  size?: 'md' | 'lg';
   children: ReactNode;
 }
 
-/** Side panel hosting an edit form, with a footer that stays visible while the form scrolls. */
-export function FormSheet({ open, onOpenChange, title, description, formId, submitLabel, isSaving, children }: FormSheetProps) {
+/**
+ * Centered window hosting an edit form: header and footer stay in place while the form scrolls.
+ * Used by every admin editor so they all look and behave the same.
+ */
+export function FormDialog({ open, onOpenChange, title, description, formId, submitLabel, isSaving, size = 'md', children }: FormDialogProps) {
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="w-full gap-0 sm:max-w-xl">
-        <SheetHeader className="border-b px-6 py-5">
-          <SheetTitle>{title}</SheetTitle>
-          <SheetDescription className={description ? undefined : 'sr-only'}>{description ?? title}</SheetDescription>
-        </SheetHeader>
-        <div className="flex-1 overflow-y-auto px-6 py-6">{children}</div>
-        <SheetFooter className="flex-row justify-end gap-2 border-t px-6 py-4">
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent
+        className={cn(
+          'flex max-h-[90vh] w-full flex-col gap-0 overflow-hidden p-0',
+          size === 'lg' ? 'sm:max-w-4xl' : 'sm:max-w-2xl',
+        )}
+      >
+        <DialogHeader className="border-b px-6 py-5 text-left">
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription className={description ? undefined : 'sr-only'}>{description ?? title}</DialogDescription>
+        </DialogHeader>
+        <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto px-6 py-6">{children}</div>
+        <DialogFooter className="flex-row justify-end gap-2 border-t px-6 py-4">
           <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
             Annuler
           </Button>
           <Button type="submit" form={formId} disabled={isSaving}>
             {isSaving ? 'Enregistrement…' : submitLabel}
           </Button>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
 

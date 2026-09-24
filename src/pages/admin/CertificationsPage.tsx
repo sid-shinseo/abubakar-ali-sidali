@@ -11,7 +11,7 @@ import { errorMessage } from '@/lib/errors';
 import type { Certification } from '@/types';
 import { useAdminData } from './admin-data';
 import { CertificationForm } from './CertificationForm';
-import { AdminPageHeader, ConfirmDeleteDialog, EmptyState, FormSheet, RowActions } from './shared';
+import { AdminPageHeader, ConfirmDeleteDialog, EmptyState, FormDialog, RowActions } from './shared';
 import { SortableTableBody } from './sortable';
 
 const FORM_ID = 'certification-form';
@@ -104,7 +104,7 @@ export function CertificationsPage() {
         </div>
       )}
 
-      <FormSheet
+      <FormDialog
         open={sheetOpen}
         onOpenChange={setSheetOpen}
         title={editing ? 'Modifier la certification' : 'Nouvelle certification'}
@@ -114,7 +114,7 @@ export function CertificationsPage() {
         isSaving={isSaving}
       >
         <CertificationForm key={formKey} formId={FORM_ID} item={editing} onSavingChange={setIsSaving} onSaved={() => setSheetOpen(false)} />
-      </FormSheet>
+      </FormDialog>
 
       <ConfirmDeleteDialog itemLabel={pendingDelete?.name ?? null} onCancel={() => setPendingDelete(null)} onConfirm={() => void confirmDelete()} />
     </>

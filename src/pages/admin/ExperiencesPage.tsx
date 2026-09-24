@@ -8,7 +8,7 @@ import { errorMessage } from '@/lib/errors';
 import type { Experience, ExperienceType } from '@/types';
 import { useAdminData } from './admin-data';
 import { ExperienceForm } from './ExperienceForm';
-import { AdminPageHeader, ConfirmDeleteDialog, FormSheet, RowActions } from './shared';
+import { AdminPageHeader, ConfirmDeleteDialog, FormDialog, RowActions } from './shared';
 import { SortableTableBody } from './sortable';
 
 const FORM_ID = 'experience-form';
@@ -118,7 +118,7 @@ export function ExperiencesPage() {
         </div>
       )}
 
-      <FormSheet
+      <FormDialog
         open={sheetOpen}
         onOpenChange={setSheetOpen}
         title={editing ? "Modifier l'élément" : 'Ajouter au parcours'}
@@ -135,7 +135,7 @@ export function ExperiencesPage() {
           onSavingChange={setIsSaving}
           onSaved={() => setSheetOpen(false)}
         />
-      </FormSheet>
+      </FormDialog>
 
       <ConfirmDeleteDialog itemLabel={pendingDelete?.title ?? null} onCancel={() => setPendingDelete(null)} onConfirm={() => void confirmDelete()} />
     </>
