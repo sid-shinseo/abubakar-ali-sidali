@@ -84,10 +84,9 @@ export function SkillsPage() {
                         <TechIcon name={skill.name} className="size-6" />
                       </span>
                       <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
-                          <h3 className="text-sm font-medium">{skill.name}</h3>
-                          <SkillLevel level={skill.level} withTooltip />
-                        </div>
+                        {/* Level always under the name, so every row lines up the same way. */}
+                        <h3 className="text-sm font-medium">{skill.name}</h3>
+                        <SkillLevel level={skill.level} withTooltip className="mt-1" />
                         {skill.description && <p className="mt-0.5 text-xs leading-5 text-muted-foreground">{skill.description}</p>}
                       </div>
                     </li>
